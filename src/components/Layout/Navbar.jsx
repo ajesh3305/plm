@@ -9,6 +9,7 @@ const Navbar = ({ toggleSidebar }) => {
   const { currentUser, userRole } = useAuth();
   const navigate = useNavigate();
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const isMobile = window.innerWidth < 768;
 
   useEffect(() => {
     if (isDarkMode) {
@@ -34,7 +35,7 @@ const Navbar = ({ toggleSidebar }) => {
       borderBottom: '1px solid var(--border-color)',
       display: 'flex',
       alignItems: 'center',
-      padding: '0 1.5rem',
+      padding: isMobile ? '0 0.75rem' : '0 1.5rem',
       justifyContent: 'space-between',
       boxShadow: 'var(--shadow-sm)'
     }}>
@@ -58,8 +59,8 @@ const Navbar = ({ toggleSidebar }) => {
         >
           <Menu size={20} />
         </button>
-        <div style={{ fontWeight: '600', color: 'var(--text-primary)' }}>
-          Dashboard
+        <div style={{ fontWeight: '600', color: 'var(--text-primary)', fontSize: isMobile ? '0.9rem' : '1rem' }}>
+          {isMobile ? 'Tracker' : 'Dashboard'}
         </div>
       </div>
 
@@ -80,9 +81,11 @@ const Navbar = ({ toggleSidebar }) => {
           
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.25rem 0.75rem', backgroundColor: 'var(--bg-tertiary)', borderRadius: 'var(--radius-full)' }}>
             <User size={16} color="var(--brand-primary)" />
-            <span style={{ fontSize: '0.875rem', fontWeight: '500' }}>
-              {currentUser.email?.split('@')[0]} <span style={{ color: 'var(--text-muted)' }}>({userRole})</span>
-            </span>
+            {!isMobile && (
+              <span style={{ fontSize: '0.875rem', fontWeight: '500' }}>
+                {currentUser.email?.split('@')[0]} <span style={{ color: 'var(--text-muted)' }}>({userRole})</span>
+              </span>
+            )}
           </div>
           
           <button 
@@ -91,7 +94,7 @@ const Navbar = ({ toggleSidebar }) => {
               background: 'transparent',
               border: '1px solid var(--border-color)',
               color: 'var(--danger)',
-              padding: '0.4rem 1rem',
+              padding: isMobile ? '0.4rem 0.5rem' : '0.4rem 1rem',
               borderRadius: 'var(--radius-md)',
               display: 'flex',
               alignItems: 'center',
@@ -104,7 +107,7 @@ const Navbar = ({ toggleSidebar }) => {
             onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#fee2e2'}
             onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
           >
-            <LogOut size={16} /> Logout
+            <LogOut size={16} /> {!isMobile && 'Logout'}
           </button>
         </div>
       )}

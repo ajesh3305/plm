@@ -65,7 +65,7 @@ const Login = () => {
       padding: '1rem'
     }}>
       <div style={{ width: '100%', maxWidth: '400px' }} className="animate-slide-up">
-        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+        <div style={{ textAlign: 'center', marginBottom: window.innerWidth < 768 ? '1.5rem' : '2rem' }}>
           <div style={{ 
             display: 'inline-flex', 
             alignItems: 'center', 

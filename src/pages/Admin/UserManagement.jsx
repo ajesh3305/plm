@@ -173,7 +173,7 @@ const UserManagement = () => {
 
   return (
     <div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+      <div style={{ display: 'flex', flexDirection: window.innerWidth < 768 ? 'column' : 'row', justifyContent: 'space-between', alignItems: window.innerWidth < 768 ? 'flex-start' : 'center', marginBottom: '1.5rem', gap: '1rem' }}>
         <h1 style={{ margin: 0 }}>User Management</h1>
         <Button onClick={() => {
           const newShow = !showForm;
@@ -192,7 +192,7 @@ const UserManagement = () => {
         <Card className="animate-slide-up" style={{ marginBottom: '1.5rem' }}>
           <CardHeader title={editUserId ? "Edit User" : "Create User"} />
           <CardBody>
-            <form onSubmit={handleAddUser} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+            <form onSubmit={handleAddUser} className="responsive-grid responsive-grid-2">
               <Input label="Full Name" required value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} />
               <Input label="Login ID" type="text" required value={formData.loginId} onChange={e => setFormData({ ...formData, loginId: e.target.value })} />
 
@@ -224,7 +224,7 @@ const UserManagement = () => {
                   { label: 'Admin', value: 'admin' },
                 ]}
               />
-              <div style={{ gridColumn: 'span 2', display: 'flex', justifyContent: 'flex-end', marginTop: '1rem' }}>
+              <div style={{ gridColumn: window.innerWidth < 768 ? 'span 1' : 'span 2', display: 'flex', justifyContent: 'flex-end', marginTop: '1rem' }}>
                 <Button type="submit">{editUserId ? "Update User" : "Create User"}</Button>
               </div>
             </form>

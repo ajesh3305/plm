@@ -79,7 +79,7 @@ const MachineManagement = () => {
       <Card style={{ marginBottom: '1.5rem' }}>
         <CardHeader title={editId ? "Edit Machine" : "Add New Machine"} />
         <CardBody>
-          <form onSubmit={handleAdd} style={{ display: 'flex', gap: '1rem', alignItems: 'flex-end' }}>
+          <form onSubmit={handleAdd} style={{ display: 'flex', flexDirection: window.innerWidth < 768 ? 'column' : 'row', gap: '1rem', alignItems: window.innerWidth < 768 ? 'stretch' : 'flex-end' }}>
             <div style={{ flex: 1 }}>
               <Input
                 label="Machine Name"
@@ -89,7 +89,7 @@ const MachineManagement = () => {
                 placeholder="e.g. Extruder A"
               />
             </div>
-            <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem' }}>
+            <div style={{ display: 'flex', gap: '0.5rem', marginBottom: window.innerWidth < 768 ? '0' : '1rem' }}>
               {editId && (
                 <Button type="button" onClick={() => {
                   setEditId(null);

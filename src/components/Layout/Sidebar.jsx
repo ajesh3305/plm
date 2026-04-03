@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { LayoutDashboard, Users, Server, Briefcase, FileText, Settings, Activity, ClipboardList } from 'lucide-react';
 
-const Sidebar = ({ isOpen }) => {
+const Sidebar = ({ isOpen, isMobile, toggleSidebar }) => {
   const { userRole } = useAuth();
 
   const width = isOpen ? '250px' : '0px';
@@ -35,12 +35,18 @@ const Sidebar = ({ isOpen }) => {
     <aside style={{
       width: width,
       backgroundColor: 'var(--bg-secondary)',
-      borderRight: '1px solid var(--border-color)',
-      transition: 'width 0.3s ease, padding 0.3s ease',
+      borderRight: isMobile ? 'none' : '1px solid var(--border-color)',
+      transition: 'width 0.3s ease, padding 0.3s ease, left 0.3s ease',
       overflowX: 'hidden',
       display: 'flex',
       flexDirection: 'column',
-      padding: padding
+      padding: padding,
+      position: isMobile ? 'absolute' : 'relative',
+      top: 0,
+      left: 0,
+      height: '100%',
+      zIndex: 50,
+      boxShadow: isMobile && isOpen ? 'var(--shadow-lg)' : 'none'
     }}>
       <div style={{
         padding: '1rem',
@@ -60,7 +66,7 @@ const Sidebar = ({ isOpen }) => {
       <nav style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
         {/* Operator Links */}
         {(userRole === 'admin' || userRole === 'operator') && (
-          <NavLink to="/operator" style={getActiveStyle}>
+          <NavLink to="/operator" style={getActiveStyle} onClick={isMobile ? toggleSidebar : undefined}>
             <ClipboardList size={20} style={{ minWidth: '20px', marginRight: '0.75rem' }} />
             {isOpen && <span>Data Entry</span>}
           </NavLink>
@@ -70,11 +76,11 @@ const Sidebar = ({ isOpen }) => {
         {(userRole === 'admin' || userRole === 'manager') && (
           <>
             <div style={{ margin: '1rem 0 0.5rem', fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 'bold' }}>Reporting</div>
-            <NavLink to="/manager/records" style={getActiveStyle}>
+            <NavLink to="/manager/records" style={getActiveStyle} onClick={isMobile ? toggleSidebar : undefined}>
               <FileText size={20} style={{ minWidth: '20px', marginRight: '0.75rem' }} />
               {isOpen && <span>Records Data</span>}
             </NavLink>
-            <NavLink to="/manager/trends" style={getActiveStyle}>
+            <NavLink to="/manager/trends" style={getActiveStyle} onClick={isMobile ? toggleSidebar : undefined}>
               <LayoutDashboard size={20} style={{ minWidth: '20px', marginRight: '0.75rem' }} />
               {isOpen && <span>Trends & Reports</span>}
             </NavLink>
@@ -85,19 +91,19 @@ const Sidebar = ({ isOpen }) => {
         {userRole === 'admin' && (
           <>
             <div style={{ margin: '1rem 0 0.5rem', fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 'bold' }}>Admin Settings</div>
-            <NavLink to="/admin/users" style={getActiveStyle}>
+            <NavLink to="/admin/users" style={getActiveStyle} onClick={isMobile ? toggleSidebar : undefined}>
               <Users size={20} style={{ minWidth: '20px', marginRight: '0.75rem' }} />
               {isOpen && <span>User Management</span>}
             </NavLink>
-            <NavLink to="/admin/machines" style={getActiveStyle}>
+            <NavLink to="/admin/machines" style={getActiveStyle} onClick={isMobile ? toggleSidebar : undefined}>
               <Server size={20} style={{ minWidth: '20px', marginRight: '0.75rem' }} />
               {isOpen && <span>Machine Settings</span>}
             </NavLink>
-            <NavLink to="/admin/jobs" style={getActiveStyle}>
+            <NavLink to="/admin/jobs" style={getActiveStyle} onClick={isMobile ? toggleSidebar : undefined}>
               <Briefcase size={20} style={{ minWidth: '20px', marginRight: '0.75rem' }} />
               {isOpen && <span>Job Management</span>}
             </NavLink>
-            <NavLink to="/admin/operator-machines" style={getActiveStyle}>
+            <NavLink to="/admin/operator-machines" style={getActiveStyle} onClick={isMobile ? toggleSidebar : undefined}>
               <Settings size={20} style={{ minWidth: '20px', marginRight: '0.75rem' }} />
               {isOpen && <span>Operator Machines</span>}
             </NavLink>

@@ -121,7 +121,7 @@ const OperatorDashboard = () => {
         <CardBody>
           <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+            <div className="responsive-grid responsive-grid-2">
               <Input 
                 label="Date" 
                 type="date" 
@@ -141,7 +141,7 @@ const OperatorDashboard = () => {
               />
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+            <div className="responsive-grid responsive-grid-2">
               <Select 
                 label="Operator Name" 
                 value={formData.operatorName}
@@ -191,7 +191,7 @@ const OperatorDashboard = () => {
                 </datalist>
               </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '1rem' }}>
+            <div className="responsive-grid responsive-grid-2" style={{ marginTop: '1rem' }}>
               <Input 
                 label="Production Quantity" 
                 type="number" 

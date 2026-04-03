@@ -132,3 +132,32 @@ input, select, textarea, button {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-muted); 
 }
+
+/* Responsive Utilities */
+.responsive-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .responsive-grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .responsive-grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .mobile-hide {
+    display: none !important;
+  }
+  
+  h1 {
+    font-size: 1.25rem !important;
+  }
+  
+  .glass-panel {
+    border-radius: var(--radius-md);
+  }
+}

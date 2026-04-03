@@ -78,7 +78,7 @@ const OperatorMachineManagement = () => {
       <Card style={{ marginBottom: '1.5rem' }}>
         <CardHeader title="Add Operator Mapping" />
         <CardBody>
-          <form onSubmit={handleAdd} style={{ display: 'flex', gap: '1rem', alignItems: 'flex-end' }}>
+          <form onSubmit={handleAdd} style={{ display: 'flex', flexDirection: window.innerWidth < 768 ? 'column' : 'row', gap: '1rem', alignItems: window.innerWidth < 768 ? 'stretch' : 'flex-end' }}>
             <div style={{ flex: 1 }}>
               <Input
                 label="Operator name"
@@ -100,7 +100,7 @@ const OperatorMachineManagement = () => {
                 ]}
               />
             </div>
-            <div style={{ marginBottom: '1rem' }}>
+            <div style={{ marginBottom: window.innerWidth < 768 ? '0' : '1rem' }}>
               <Button type="submit">Add Mapping</Button>
             </div>
           </form>

@@ -79,7 +79,7 @@ const JobManagement = () => {
       <Card style={{ marginBottom: '1.5rem' }}>
         <CardHeader title={editId ? "Edit Job" : "Add New Job"} />
         <CardBody>
-          <form onSubmit={handleAdd} style={{ display: 'flex', gap: '1rem', alignItems: 'flex-end' }}>
+          <form onSubmit={handleAdd} style={{ display: 'flex', flexDirection: window.innerWidth < 768 ? 'column' : 'row', gap: '1rem', alignItems: window.innerWidth < 768 ? 'stretch' : 'flex-end' }}>
             <div style={{ flex: 1 }}>
               <Input 
                 label="Job Name" 
@@ -89,7 +89,7 @@ const JobManagement = () => {
                 placeholder="e.g. Order #1234 - Plastic Cups"
               />
             </div>
-            <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem' }}>
+            <div style={{ display: 'flex', gap: '0.5rem', marginBottom: window.innerWidth < 768 ? '0' : '1rem' }}>
               {editId && (
                 <Button type="button" onClick={() => {
                   setEditId(null);
