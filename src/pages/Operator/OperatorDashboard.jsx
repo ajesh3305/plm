@@ -165,31 +165,19 @@ const OperatorDashboard = () => {
               />
             </div>
               
-              <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
-                <label style={{ marginBottom: '0.5rem', fontSize: '0.875rem', fontWeight: '500', color: 'var(--text-primary)' }}>
-                  Job Name
-                </label>
-                <input 
-                  list="job-suggestions" 
-                  value={formData.jobName}
-                  onChange={e => setFormData({...formData, jobName: e.target.value})}
-                  required
-                  placeholder="Type to search jobs..."
-                  style={{
-                    padding: '0.5rem 0.75rem',
-                    borderRadius: 'var(--radius-md)',
-                    border: '1px solid var(--border-color)',
-                    backgroundColor: 'var(--bg-primary)',
-                    color: 'var(--text-primary)',
-                    fontSize: '1rem',
-                  }}
-                />
-                <datalist id="job-suggestions">
-                  {jobs.map((job, idx) => (
-                    <option key={idx} value={job} />
-                  ))}
-                </datalist>
-              </div>
+            <Input 
+              label="Job Name"
+              list="job-suggestions"
+              value={formData.jobName}
+              onChange={e => setFormData({...formData, jobName: e.target.value})}
+              placeholder="Type to search jobs..."
+              required
+            />
+            <datalist id="job-suggestions">
+              {jobs.map((job, idx) => (
+                <option key={idx} value={job} />
+              ))}
+            </datalist>
 
             <div className="responsive-grid responsive-grid-2" style={{ marginTop: '1rem' }}>
               <Input 
@@ -212,8 +200,8 @@ const OperatorDashboard = () => {
               />
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '1.5rem' }}>
-              <Button type="submit" disabled={loading} size="lg">
+            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1.5rem' }}>
+              <Button type="submit" disabled={loading} size="lg" fullWidth={window.innerWidth < 768}>
                 {loading ? 'Submitting...' : 'Submit Data'}
               </Button>
             </div>

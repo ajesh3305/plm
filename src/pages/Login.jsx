@@ -70,14 +70,9 @@ const Login = () => {
             display: 'inline-flex', 
             alignItems: 'center', 
             justifyContent: 'center',
-            backgroundColor: 'var(--brand-primary)',
-            color: 'white',
-            borderRadius: 'var(--radius-md)',
-            padding: '0.75rem',
-            marginBottom: '1rem',
-            boxShadow: 'var(--shadow-md)'
+            marginBottom: '1rem'
           }}>
-            <img src={logo} alt="Perfect Cartons Logo" style={{ width: '64px', height: 'auto' }} />
+            <img src={logo} alt="Perfect Cartons Logo" style={{ width: '120px', height: 'auto' }} />
           </div>
           <h1 style={{ fontSize: '1.5rem', fontWeight: '700', color: 'var(--text-primary)', margin: 0 }}>Plant Production Tracker</h1>
           <p style={{ color: 'var(--text-muted)', marginTop: '0.5rem' }}>Login to your account to continue</p>

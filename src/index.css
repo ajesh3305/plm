@@ -159,5 +159,6 @@ input, select, textarea, button {
   
   .glass-panel {
     border-radius: var(--radius-md);
+    padding: 1rem !important;
   }
 }
