@@ -3,6 +3,7 @@ import { useAuth } from '../../context/AuthContext';
 import { auth } from '../../firebase';
 import { signOut } from 'firebase/auth';
 import { Menu, LogOut, User, Moon, Sun } from 'lucide-react';
+import logo from '../../assets/logo.png';
 import { useNavigate } from 'react-router-dom';
 
 const Navbar = ({ toggleSidebar }) => {
@@ -59,8 +60,11 @@ const Navbar = ({ toggleSidebar }) => {
         >
           <Menu size={20} />
         </button>
-        <div style={{ fontWeight: '600', color: 'var(--text-primary)', fontSize: isMobile ? '0.9rem' : '1rem' }}>
-          {isMobile ? 'Tracker' : 'Dashboard'}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <img src={logo} alt="Logo" style={{ width: '24px', height: '24px', borderRadius: '4px' }} className="mobile-hide" />
+          <div style={{ fontWeight: '600', color: 'var(--text-primary)', fontSize: isMobile ? '0.9rem' : '1rem' }}>
+            {isMobile ? 'Tracker' : 'Dashboard'}
+          </div>
         </div>
       </div>
 

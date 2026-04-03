@@ -6,7 +6,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import { Card, CardHeader, CardBody } from '../components/UI/Card';
 import Input from '../components/UI/Input';
 import Button from '../components/UI/Button';
-import { Activity } from 'lucide-react';
+import logo from '../assets/logo.png';
 
 const Login = () => {
   const [loginId, setLoginId] = useState('');
@@ -77,7 +77,7 @@ const Login = () => {
             marginBottom: '1rem',
             boxShadow: 'var(--shadow-md)'
           }}>
-            <Activity size={32} />
+            <img src={logo} alt="Perfect Cartons Logo" style={{ width: '64px', height: 'auto' }} />
           </div>
           <h1 style={{ fontSize: '1.5rem', fontWeight: '700', color: 'var(--text-primary)', margin: 0 }}>Plant Production Tracker</h1>
           <p style={{ color: 'var(--text-muted)', marginTop: '0.5rem' }}>Login to your account to continue</p>

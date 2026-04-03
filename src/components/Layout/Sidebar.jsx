@@ -1,7 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { LayoutDashboard, Users, Server, Briefcase, FileText, Settings, Activity, ClipboardList } from 'lucide-react';
+import { LayoutDashboard, Users, Server, Briefcase, FileText, Settings, LogOut, ClipboardList } from 'lucide-react';
+import logo from '../../assets/logo.png';
 
 const Sidebar = ({ isOpen, isMobile, toggleSidebar }) => {
   const { userRole } = useAuth();
@@ -59,8 +60,8 @@ const Sidebar = ({ isOpen, isMobile, toggleSidebar }) => {
         alignItems: 'center',
         gap: '0.5rem'
       }}>
-        <Activity size={24} />
-        {isOpen && <span>Plant Tracker</span>}
+        <img src={logo} alt="Logo" style={{ width: '32px', height: 'auto', borderRadius: '4px' }} />
+        {isOpen && <span style={{ fontSize: '1.1rem' }}>Perfect Cartons</span>}
       </div>
 
       <nav style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
