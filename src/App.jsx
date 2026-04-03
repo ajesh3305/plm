@@ -24,7 +24,7 @@ const PrivateRoute = ({ children, allowedRoles }) => {
 function App() {
   return (
     <AuthProvider>
-      <Router>
+      <Router basename={import.meta.env.BASE_URL}>
         <Routes>
           <Route path="/login" element={<Login />} />
 
