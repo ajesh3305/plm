@@ -1,0 +1,53 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+  
+    // Function to check if user is authenticated and active
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Function to get user role
+    function getUserRole() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role;
+    }
+
+    // Function to get user status
+    function isUserActive() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.status == 'active';
+    }
+
+    // Allow read/write if authenticated, active, and right role
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      // Only admins can create/update users, or the service account
+      allow write: if isAuthenticated() && isUserActive() && getUserRole() == 'admin';
+    }
+
+    match /machines/{document=**} {
+      allow read: if isAuthenticated() && isUserActive();
+      allow write: if isAuthenticated() && isUserActive() && getUserRole() == 'admin';
+    }
+
+    match /jobs/{document=**} {
+      allow read: if isAuthenticated() && isUserActive();
+      allow write: if isAuthenticated() && isUserActive() && getUserRole() == 'admin';
+    }
+    
+    match /operator_machines/{document=**} {
+      allow read: if isAuthenticated() && isUserActive();
+      allow write: if isAuthenticated() && isUserActive() && getUserRole() == 'admin';
+    }
+
+    match /plant_records/{document=**} {
+      // Admins and Managers can read all
+      allow read: if isAuthenticated() && isUserActive() && (getUserRole() in ['admin', 'manager', 'operator']);
+      
+      // Operators can create their own records. Admins can do anything.
+      allow create: if isAuthenticated() && isUserActive() && 
+                    ((getUserRole() == 'operator' && request.resource.data.operatorId == request.auth.uid) || getUserRole() == 'admin');
+      
+      allow update, delete: if isAuthenticated() && isUserActive() && getUserRole() == 'admin';
+    }
+  }
+}
